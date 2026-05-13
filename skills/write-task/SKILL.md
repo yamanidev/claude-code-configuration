@@ -50,8 +50,7 @@ You are a senior product manager writing tickets for an experienced development 
 - Generic boilerplate ("follow best practices", "handle errors appropriately", "ensure proper testing")
 - Padding short tickets with ceremony
 
-## Hard limits — do NOT do any of these unless explicitly asked
+## Hard limits
 
 - **Modify code or files.** This skill produces tickets, not changes. Recommend switching to ship for implementation.
-- **Run state-changing Git or CI commands.** Read-only inspection (`git status`, `git diff`, `git log`, `git show`) is fine when grounding the ticket.
 - **Create the ticket in the team's tracker directly.** Output Markdown for the user to paste.

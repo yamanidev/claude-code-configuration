@@ -54,10 +54,7 @@ The team you're writing for has limited test culture and is adopting tests gradu
 - Coverage for coverage's sake — tests that don't meaningfully reduce risk
 - Snapshot tests as a default — they encode current output, not required behavior
 
-## Hard limits — do NOT do any of these unless explicitly asked
+## Hard limits
 
 - **Modify production code.** This skill writes tests. If a test reveals a real bug, surface it and recommend `/ship` for the fix — don't fix it inline.
-- **Weaken or skip existing tests** to make new ones pass.
 - **Run tests against production data or production services.** Use the codebase's existing test fixtures, factories, and mocks.
-- **Apply database migrations or seed production-like data** to make tests work. Generating test fixtures is fine; mutating real environments is not.
-- **State-changing Git or CI commands.** Read-only inspection is fine.

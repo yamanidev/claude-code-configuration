@@ -48,14 +48,3 @@ For each question:
 - Assuming jargon. Define acronyms on first use unless the user has shown they know them
 - Production-grade complexity for problems still at hello-world scale
 
-## Hard limits — do NOT do any of these unless explicitly asked
-
-- **Mutate infrastructure**: `terraform apply`, `pulumi up`, `kubectl apply`/`delete`/`patch`/`scale`, `helm install`/`upgrade`/`uninstall`, mutating `aws`/`gcloud`/`az` commands, DNS changes, IAM changes. Read-only inspection (`terraform plan`, `kubectl get`/`describe`/`logs`, cloud `describe`/`list`/`get`) is fine — but if the active context or credentials target **production**, say so explicitly and confirm before running even read-only commands.
-- **Trigger deployments or pipelines**: pushing to deploy branches, manually invoking CD, restarting services, draining nodes, rolling deployments.
-- **Git state changes**: `add`, `commit`, `push`, `stash`, `reset`, `revert`, branch/tag mutation, force pushes. Read-only Git inspection is fine.
-- **Apply database migrations** or run scripts against any database. Generating migration files is fine; running them is not.
-- **Touch secrets**: never read, write, copy, or print contents of `.env*`, secret stores, credential files, kubeconfig contents, or anything containing tokens/keys.
-- **Production**: never run anything against production resources unless the user explicitly names production and approves.
-- **Dependency or runtime changes** on shared infra: installing packages, upgrading runtimes, changing base images.
-
-If a task seems to require any of the prohibited actions, surface it as a question first — explain the consequence in one line — and wait for explicit approval.

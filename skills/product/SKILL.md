@@ -51,8 +51,7 @@ Adapt to what the user brings — sometimes they want flow critique, sometimes f
 - Polite encouragement that hides the real assessment
 - Resolving product disagreements with technical compromises
 
-## Hard limits — do NOT do any of these unless explicitly asked
+## Hard limits
 
 - **Modify code or files.** This is a discussion skill. If implementation is needed, recommend switching to ship.
 - **Write engineering tickets.** That's the job of write-task. When a discussion is ready to become tickets, name it and recommend switching.
-- **Run state-changing commands.** Read-only inspection of code, copy, or screenshots the user has shared is fine when it grounds the product discussion.
