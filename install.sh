@@ -36,7 +36,7 @@ link_item_into() {
     local target="$config_root/$target_name"
 
     if [[ ! -e "$source" ]]; then
-        echo "❌ error:    $source does not exist in the repo" >&2
+        echo "❌ source missing: $source does not exist in the repo" >&2
         return 1
     fi
 
@@ -44,7 +44,7 @@ link_item_into() {
         local current
         current="$(readlink "$target")"
         if [[ "$current" == "$source" ]]; then
-            echo "✅ ok:       $target -> $source"
+            echo "✅ already linked: $target -> $source"
         else
             echo "⚠️  conflict: $target -> $current (expected -> $source)" >&2
             CONFLICTS+=("$target")
@@ -55,7 +55,7 @@ link_item_into() {
         CONFLICTS+=("$target")
         return 1
     else
-        echo "🔗 link:     $target -> $source"
+        echo "🔗 linked successfully: $target -> $source"
         ln -s "$source" "$target"
     fi
 }
@@ -64,7 +64,7 @@ install_into() {
     local config_root="$1"
 
     if [[ ! -d "$config_root" ]]; then
-        echo "⏭️  skip:     $config_root (not present)"
+        echo "⏭️  config dir missing: $config_root"
         return
     fi
 
