@@ -16,6 +16,7 @@ My personal [Claude Code](https://claude.com/claude-code) configuration.
 
 - **[`/devops`](skills/devops/SKILL.md)** — DevOps and infrastructure mentorship
 - **[`/linux`](skills/linux/SKILL.md)** — Linux internals and operations
+- **[`/meta`](skills/meta/SKILL.md)** — authoring Claude Code configuration (skills, CLAUDE.md, settings, hooks, agents, plugins)
 - **[`/product`](skills/product/SKILL.md)** — product and UX decisions
 - **[`/review-code`](skills/review-code/SKILL.md)** — structured code/PR feedback
 - **[`/ship`](skills/ship/SKILL.md)** — extending and fixing production code
