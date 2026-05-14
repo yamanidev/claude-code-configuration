@@ -1,4 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="460" height="180" viewBox="0 0 460 180" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" font-size="14">
+  <title>Status line example: green, yellow, and red threshold states</title>
   <style>
     text { fill: #8b949e; }
     .g { fill: #22c55e; }
