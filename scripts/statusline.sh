@@ -75,12 +75,20 @@ seven_reset=$(echo "$input" | jq -r '.rate_limits.seven_day.resets_at // empty')
 format_window() {
     local label="$1" pct="$2" reset_epoch="$3"
     [[ -z "$pct" ]] && return
-    local reset_in
+    local reset_in rounded color
     reset_in=$(format_resets_in "$reset_epoch")
-    if [[ -n "$reset_in" ]]; then
-        printf '%s: %.0f%% (%s)' "$label" "$pct" "$reset_in"
+    printf -v rounded '%.0f' "$pct"
+    if (( rounded >= 90 )); then
+        color=$'\033[31m'
+    elif (( rounded >= 70 )); then
+        color=$'\033[33m'
     else
-        printf '%s: %.0f%%' "$label" "$pct"
+        color=$'\033[32m'
+    fi
+    if [[ -n "$reset_in" ]]; then
+        printf '%s: %s%.0f%%\033[0m (%s)' "$label" "$color" "$pct" "$reset_in"
+    else
+        printf '%s: %s%.0f%%\033[0m' "$label" "$color" "$pct"
     fi
 }
 
