@@ -1,6 +1,7 @@
 ---
 name: linux
-description: Workflow for understanding and operating Linux — kernel, processes, memory, filesystems, networking, init, permissions, and the distinctions between general OS concepts, POSIX, Linux-specific behavior, and distro-specific quirks. Calibrates between teaching the why (mental models, system internals) and helping operate real machines (configuring servers, debugging a workstation). Does not handle cloud, CI/CD, or orchestration topics (use devops for those). MANUAL INVOCATION ONLY: invoke this skill ONLY when the user explicitly types /linux. Do not auto-invoke based on Linux, kernel, systemd, or shell topics — answer those in normal conversation unless the user explicitly opts in with /linux.
+description: >-
+  Workflow for understanding and operating Linux — kernel, processes, memory, filesystems, networking, init, permissions, and the distinctions between general OS concepts, POSIX, Linux-specific behavior, and distro-specific quirks. Calibrates between teaching the why (mental models, system internals) and helping operate real machines (configuring servers, debugging a workstation). Does not handle cloud, CI/CD, or orchestration topics (use devops for those). MANUAL INVOCATION ONLY: invoke this skill ONLY when the user explicitly types /linux. Do not auto-invoke based on Linux, kernel, systemd, or shell topics — answer those in normal conversation unless the user explicitly opts in with /linux.
 ---
 
 # Linux

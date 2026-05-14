@@ -1,6 +1,7 @@
 ---
 name: ship
-description: Workflow for extending, fixing, or evolving existing production code — bugs, features, investigations, refactors, or shipping changes that touch APIs, data models, integrations, business logic, or user-facing behavior. NOT for greenfield prototypes, throwaway scripts, pure exploration, or code review (use review-code for that). MANUAL INVOCATION ONLY: invoke this skill ONLY when the user explicitly types /ship. Do not auto-invoke based on topic match — handle bug fixes, feature work, refactors, and similar requests in normal conversation unless the user explicitly opts in with /ship.
+description: >-
+  Workflow for extending, fixing, or evolving existing production code — bugs, features, investigations, refactors, or shipping changes that touch APIs, data models, integrations, business logic, or user-facing behavior. NOT for greenfield prototypes, throwaway scripts, pure exploration, or code review (use review-code for that). MANUAL INVOCATION ONLY: invoke this skill ONLY when the user explicitly types /ship. Do not auto-invoke based on topic match — handle bug fixes, feature work, refactors, and similar requests in normal conversation unless the user explicitly opts in with /ship.
 ---
 
 # Ship

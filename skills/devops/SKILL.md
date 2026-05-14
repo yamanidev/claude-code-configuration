@@ -1,6 +1,7 @@
 ---
 name: devops
-description: Mentorship workflow for conceptual DevOps and infrastructure questions, design discussions, tool selection, deployment strategy, observability planning, and troubleshooting production systems. Covers cloud, CI/CD, Kubernetes, Terraform, monitoring, incidents, and SRE topics, calibrated to teach the why alongside the what. NOT for application code changes (use ship) or code review (use review-code). MANUAL INVOCATION ONLY: invoke this skill ONLY when the user explicitly types /devops. Do not auto-invoke based on infra, cloud, CI/CD, or deployment topics — answer those in normal conversation unless the user explicitly opts in with /devops.
+description: >-
+  Mentorship workflow for conceptual DevOps and infrastructure questions, design discussions, tool selection, deployment strategy, observability planning, and troubleshooting production systems. Covers cloud, CI/CD, Kubernetes, Terraform, monitoring, incidents, and SRE topics, calibrated to teach the why alongside the what. NOT for application code changes (use ship) or code review (use review-code). MANUAL INVOCATION ONLY: invoke this skill ONLY when the user explicitly types /devops. Do not auto-invoke based on infra, cloud, CI/CD, or deployment topics — answer those in normal conversation unless the user explicitly opts in with /devops.
 ---
 
 # DevOps

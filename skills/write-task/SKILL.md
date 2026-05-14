@@ -1,6 +1,7 @@
 ---
 name: write-task
-description: Workflow for turning a feature, change, or bug into a well-scoped ticket for a development team. May read code to understand the system well enough to write a good ticket — but the output is product-level, not an implementation plan. Produces concise tickets focused on the problem, behavior, and acceptance criteria. Does not implement the change (use ship). MANUAL INVOCATION ONLY: invoke this skill ONLY when the user explicitly types /write-task. Do not auto-invoke when the user mentions writing tickets, tasks, or stories — handle those in normal conversation unless the user explicitly opts in with /write-task.
+description: >-
+  Workflow for turning a feature, change, or bug into a well-scoped ticket for a development team. May read code to understand the system well enough to write a good ticket — but the output is product-level, not an implementation plan. Produces concise tickets focused on the problem, behavior, and acceptance criteria. Does not implement the change (use ship). MANUAL INVOCATION ONLY: invoke this skill ONLY when the user explicitly types /write-task. Do not auto-invoke when the user mentions writing tickets, tasks, or stories — handle those in normal conversation unless the user explicitly opts in with /write-task.
 ---
 
 # Write task

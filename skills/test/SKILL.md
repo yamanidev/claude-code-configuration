@@ -1,6 +1,7 @@
 ---
 name: test
-description: Workflow for writing tests against requirements — verifying that a feature, endpoint, or function behaves correctly according to its specification, not according to its current implementation. Reads the spec/requirement and the surface being tested (signatures, contracts, observable behavior); deliberately avoids mirroring implementation logic into the tests. Suitable for adding coverage after the fact in a codebase without strong test culture. Does not modify production code (use ship) and does not review existing tests as part of a code review (use review-code). MANUAL INVOCATION ONLY: invoke this skill ONLY when the user explicitly types /test. Do not auto-invoke when the user mentions tests, coverage, or specs — handle those in normal conversation unless the user explicitly opts in with /test.
+description: >-
+  Workflow for writing tests against requirements — verifying that a feature, endpoint, or function behaves correctly according to its specification, not according to its current implementation. Reads the spec/requirement and the surface being tested (signatures, contracts, observable behavior); deliberately avoids mirroring implementation logic into the tests. Suitable for adding coverage after the fact in a codebase without strong test culture. Does not modify production code (use ship) and does not review existing tests as part of a code review (use review-code). MANUAL INVOCATION ONLY: invoke this skill ONLY when the user explicitly types /test. Do not auto-invoke when the user mentions tests, coverage, or specs — handle those in normal conversation unless the user explicitly opts in with /test.
 ---
 
 # Test

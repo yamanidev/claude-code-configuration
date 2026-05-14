@@ -1,6 +1,7 @@
 ---
 name: review-code
-description: Read-only workflow for code review, PR review, or feedback on a diff, branch, or specific files. Produces structured, prioritized feedback with blockers, should-fix items, nits, questions, and notable strengths — does not modify code. NOT for making changes (use ship for that). MANUAL INVOCATION ONLY: invoke this skill ONLY when the user explicitly types /review-code. Do not auto-invoke based on phrasings like "review this", "look at my diff", or "what do you think of this PR" — handle review-style requests in normal conversation unless the user explicitly opts in with /review-code.
+description: >-
+  Read-only workflow for code review, PR review, or feedback on a diff, branch, or specific files. Produces structured, prioritized feedback with blockers, should-fix items, nits, questions, and notable strengths — does not modify code. NOT for making changes (use ship for that). MANUAL INVOCATION ONLY: invoke this skill ONLY when the user explicitly types /review-code. Do not auto-invoke based on phrasings like "review this", "look at my diff", or "what do you think of this PR" — handle review-style requests in normal conversation unless the user explicitly opts in with /review-code.
 ---
 
 # Review code
