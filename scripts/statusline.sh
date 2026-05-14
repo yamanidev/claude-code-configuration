@@ -86,7 +86,7 @@ format_window() {
         color=$'\033[32m'
     fi
     if [[ -n "$reset_in" ]]; then
-        printf '%s: %s%.0f%%\033[0m (%s)' "$label" "$color" "$pct" "$reset_in"
+        printf '%s: %s%.0f%%\033[0m (resets in %s)' "$label" "$color" "$pct" "$reset_in"
     else
         printf '%s: %s%.0f%%\033[0m' "$label" "$color" "$pct"
     fi
