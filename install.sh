@@ -8,6 +8,14 @@
 # symlink), the script aborts with a non-zero exit code and asks you to
 # back up and rename or remove the conflicting file before re-running.
 #
+# Flags:
+#   --statusline      Opt in to the status line. Installs a settings.json
+#                     with a statusLine block, symlinks statusline.sh,
+#                     and — when more than one target dir is given —
+#                     prompts for a display name per dir (written to
+#                     <target>/.config-name and shown in the status
+#                     line). The default install omits all of that.
+#
 # Usage:
 #   ./install.sh                                       # links into ~/.claude
 #   ./install.sh ~/.claude-work ~/.claude-personal     # links into each path
@@ -16,14 +24,32 @@ set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "$0")" && pwd)"
 
-# Each entry maps a path inside the repo to the name it should take in the
-# Claude Code config dir. They're the same in every case today, but the
-# pairing keeps the loop honest if that ever changes.
+# Flag parsing — strip recognised flags from "$@" so the rest can be
+# treated as positional target dirs by the existing logic below.
+STATUSLINE=false
+ARGS=()
+for arg in "$@"; do
+    case "$arg" in
+        --statusline) STATUSLINE=true ;;
+        --*) echo "❌ unknown flag: $arg" >&2; exit 2 ;;
+        *) ARGS+=("$arg") ;;
+    esac
+done
+set -- "${ARGS[@]+"${ARGS[@]}"}"
+
+# Each entry maps a path inside the repo to the name it should take in
+# the Claude Code config dir. The set depends on whether the status line
+# was opted into.
 ITEMS=(
     "skills:skills"
     "CLAUDE.md:CLAUDE.md"
-    "settings.json:settings.json"
 )
+if [[ "$STATUSLINE" == "true" ]]; then
+    ITEMS+=("settings-with-statusline.json:settings.json")
+    ITEMS+=("scripts/statusline.sh:statusline.sh")
+else
+    ITEMS+=("settings.json:settings.json")
+fi
 
 CONFLICTS=()
 
@@ -60,6 +86,30 @@ link_item_into() {
     fi
 }
 
+prompt_config_name() {
+    local config_root="$1"
+    local name_file="$config_root/.config-name"
+
+    if [[ -f "$name_file" ]]; then
+        local existing
+        existing=$(cat "$name_file")
+        echo "📝 display name already set: $config_root → $existing (delete $name_file to re-prompt)"
+
+        return
+    fi
+
+    local display_name=""
+    while [[ -z "$display_name" ]]; do
+        read -r -p "   display name for $config_root: " display_name
+        # Trim leading/trailing whitespace only; preserve internal spaces.
+        display_name="${display_name#"${display_name%%[![:space:]]*}"}"
+        display_name="${display_name%"${display_name##*[![:space:]]}"}"
+    done
+
+    printf '%s\n' "$display_name" > "$name_file"
+    echo "📝 saved display name: $config_root/.config-name → $display_name"
+}
+
 install_into() {
     local config_root="$1"
 
@@ -77,11 +127,26 @@ install_into() {
 }
 
 if [[ $# -gt 0 ]]; then
-    for config_root in "$@"; do
-        install_into "$config_root"
-    done
+    TARGETS=("$@")
 else
-    install_into "$HOME/.claude"
+    TARGETS=("$HOME/.claude")
+fi
+
+for config_root in "${TARGETS[@]}"; do
+    install_into "$config_root"
+done
+
+# When the status line is opted in and more than one target dir is
+# given, prompt for a display name per dir so the status line can show
+# which account is active. Single-target status-line installs work fine
+# without one — the script just omits the config-dir field in that case.
+if [[ "$STATUSLINE" == "true" && ${#CONFLICTS[@]} -eq 0 && ${#TARGETS[@]} -gt 1 ]]; then
+    echo ""
+    echo "📝 Multiple config dirs detected. Set a display name for each (shown in the status line):"
+    for config_root in "${TARGETS[@]}"; do
+        [[ -d "$config_root" ]] || continue
+        prompt_config_name "$config_root"
+    done
 fi
 
 if [[ ${#CONFLICTS[@]} -gt 0 ]]; then
