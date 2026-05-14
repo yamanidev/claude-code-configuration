@@ -50,6 +50,8 @@ That's the form to use if you run multiple Claude Code accounts side-by-side via
 
 To stay up-to-date with this configuration, just run `git pull`, updates propagate through the symlinks automatically.
 
+Run `./install.sh --help` for usage details.
+
 ## Status line
 
 Off by default, requires `jq`. Pass `--statusline` to `install.sh` to enable it.
