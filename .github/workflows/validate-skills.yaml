@@ -2,6 +2,10 @@ name: validate-skills
 
 on:
   push:
+    paths:
+      - 'skills/**/SKILL.md'
+      - 'scripts/validate_skills.py'
+      - '.github/workflows/validate-skills.yaml'
 
 jobs:
   validate-skills:
