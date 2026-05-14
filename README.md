@@ -53,20 +53,10 @@ To stay up-to-date with this configuration, just run `git pull`, updates propoga
 ## Status line
 
 Off by default, requires `jq` Pass `--statusline` to `install.sh` to enable it.
-- Line 1: Active model and version
-- Line 2: Usage for both the 5 hour and 7 days windows
+- Line 1: Active model and version, with the configuration directory name appended for multi-account setups
+- Line 2: Usage for both the 5 hour and 7 days windows, color-coded by threshold
 
-```text
-Opus 4.7
-5h: 23% (2h) · 7d: 41% (3d)
-```
-
-For multi-account setups, the selected configuration directory name is included in the first line:
-
-```text
-Opus 4.7 · personal
-5h: 23% (2h) · 7d: 41% (3d)
-```
+![Status line example showing green, yellow, and red threshold states](assets/statusline.svg)
 
 ## License
 

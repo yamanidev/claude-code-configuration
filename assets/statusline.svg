@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="180" viewBox="0 0 360 180" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" font-size="14">
+  <style>
+    text { fill: #8b949e; }
+    .g { fill: #22c55e; }
+    .y { fill: #eab308; }
+    .r { fill: #ef4444; }
+  </style>
+
+  <text x="12" y="22">Opus 4.7</text>
+  <text x="12" y="42">5h: <tspan class="g">23%</tspan> (2h) · 7d: <tspan class="g">41%</tspan> (3d)</text>
+
+  <text x="12" y="82">Opus 4.7 · personal</text>
+  <text x="12" y="102">5h: <tspan class="y">78%</tspan> (45m) · 7d: <tspan class="y">82%</tspan> (2d)</text>
+
+  <text x="12" y="142">Opus 4.7</text>
+  <text x="12" y="162">5h: <tspan class="r">94%</tspan> (12m) · 7d: <tspan class="r">96%</tspan> (1d)</text>
+</svg>
