@@ -48,11 +48,11 @@ With no arguments, it targets the default `~/.claude`. Pass one or more paths to
 
 That's the form to use if you run multiple Claude Code accounts side-by-side via `CLAUDE_CONFIG_DIR`, the setup I describe in [How to Use Multiple Claude Code Accounts (Work & Personal)](https://mohamedyamani.com/blog/multiple-claude-code-accounts-work-personal/).
 
-To stay up-to-date with this configuration, just run `git pull`, updates propogate through the symlinks automatically.
+To stay up-to-date with this configuration, just run `git pull`, updates propagate through the symlinks automatically.
 
 ## Status line
 
-Off by default, requires `jq` Pass `--statusline` to `install.sh` to enable it.
+Off by default, requires `jq`. Pass `--statusline` to `install.sh` to enable it.
 - Line 1: Active model and version, with the configuration directory name appended for multi-account setups
 - Line 2: Usage for both the 5 hour and 7 days windows, color-coded by threshold
 
