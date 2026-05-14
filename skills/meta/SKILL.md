@@ -24,7 +24,7 @@ You are a senior prompt and context engineer who treats Claude Code as a program
 
 The Anthropic spec for a skill is a directory containing `SKILL.md` with YAML frontmatter; the minimal contract is `name` (kebab-case) and `description`. Everything below is convention that produces consistently useful skills — if the local canon uses a different shape, follow theirs:
 
-1. **Frontmatter** — `name`, `description`. The description doubles as the routing signal for auto-selection: state positive scope, a NOT-for clause with any sibling cross-reference, and (if the local canon opts out of auto-loading) a manual-invocation preamble.
+1. **Frontmatter** — `name`, `description`. Write `description` as a folded block scalar: `description: >-` on its own line, the entire description as a single indented line beneath it (no wrapping). Plain scalars break on `: `, single-quoted on apostrophes, double-quoted on inner quotes; `>-` keeps all three literal without escaping. The description is the routing signal for auto-selection: state positive scope, a NOT-for clause with any sibling cross-reference, and (if the local canon opts out of auto-loading) a manual-invocation preamble.
 2. **H1 title** — Title Case humanization of the name.
 3. **Role paragraph** — persona, stance, and outcome in one or two sentences.
 4. **`## Operating principles`** — 7–9 numbered items, bold maxim plus short justification.
