@@ -1,28 +1,32 @@
 #!/usr/bin/env bash
-#
-# Symlinks this repo's tracked items (skills/, CLAUDE.md, settings.json)
-# into a Claude Code config directory. Idempotent — safe to re-run after
-# pulling updates.
-#
-# If a target path already exists as a real file or directory (not a
-# symlink), the script aborts with a non-zero exit code and asks you to
-# back up and rename or remove the conflicting file before re-running.
-#
-# Flags:
-#   --statusline      Opt in to the status line. Installs a settings.json
-#                     with a statusLine block, symlinks statusline.sh,
-#                     and — when more than one target dir is given —
-#                     prompts for a display name per dir (written to
-#                     <target>/.config-name and shown in the status
-#                     line). The default install omits all of that.
-#
-# Usage:
-#   ./install.sh                                       # links into ~/.claude
-#   ./install.sh ~/.claude-work ~/.claude-personal     # links into each path
-#
+# install.sh — symlink this repo's skills/, CLAUDE.md, and settings.json
+# into one or more Claude Code config dirs. Run `./install.sh --help` for usage.
+
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "$0")" && pwd)"
+
+print_usage() {
+    cat <<'EOF'
+Usage: install.sh [--statusline] [TARGET_DIR...]
+
+Symlinks this repo's tracked items (skills/, CLAUDE.md, settings.json)
+into one or more Claude Code config directories. Idempotent — safe to
+re-run after pulling updates.
+
+Flags:
+  --statusline    Opt in to the status line (installs settings with a
+                  statusLine block and symlinks statusline.sh). With
+                  multiple target dirs, prompts for a display name per
+                  dir.
+  -h, --help      Show this message and exit.
+
+Examples:
+  ./install.sh                                      # links into ~/.claude
+  ./install.sh ~/.claude-work ~/.claude-personal    # links into each path
+  ./install.sh --statusline                         # with status line
+EOF
+}
 
 # Flag parsing — strip recognised flags from "$@" so the rest can be
 # treated as positional target dirs by the existing logic below.
@@ -31,7 +35,8 @@ ARGS=()
 for arg in "$@"; do
     case "$arg" in
         --statusline) STATUSLINE=true ;;
-        --*) echo "❌ unknown flag: $arg" >&2; exit 2 ;;
+        -h|--help) print_usage; exit 0 ;;
+        --*) echo "❌ unknown flag: $arg" >&2; print_usage >&2; exit 2 ;;
         *) ARGS+=("$arg") ;;
     esac
 done
