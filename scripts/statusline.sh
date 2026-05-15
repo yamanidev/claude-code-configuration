@@ -58,7 +58,7 @@ version=$(echo "$model_id" | grep -oE '[0-9]+-[0-9]+' | head -n1 | tr '-' '.')
 
 line1_parts=()
 if [[ -n "$model_name" ]]; then
-    if [[ -n "$version" ]]; then
+    if [[ -n "$version" && "$model_name" != *"$version"* ]]; then
         line1_parts+=("${model_name} ${version}")
     else
         line1_parts+=("$model_name")
