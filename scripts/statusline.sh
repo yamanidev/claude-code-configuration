@@ -4,12 +4,17 @@
 # a two-line status string:
 #
 #   Line 1: <model> <version>[ · <config-dir-name>]
-#   Line 2: 5h: <pct>% (<resets-in>) · 7d: <pct>% (<resets-in>)
+#   Line 2: 5h: <pct>% (<resets-in>) · 7d: <pct>% (<resets-in>) · context: <tokens>k
 #
 # Line 1's config-dir name appears only when the active config dir
 # contains a `.config-name` file (written by install.sh for multi-account
-# installs). Line 2 is omitted entirely when rate limits are absent
-# (free plan, or before the first API response of the session).
+# installs). Line 2 is omitted entirely when rate limits and context
+# usage are both absent (free plan, or before the first API response
+# of the session). Context usage is read from the latest assistant turn
+# in the session transcript and color-coded by absolute token count:
+# green < 80k, yellow 80–160k, red ≥ 160k. These tracks the practical
+# quality-degradation curve for code/agent work, independent of whether
+# the model advertises a 200k or 1M window.
 
 set -euo pipefail
 
@@ -97,6 +102,29 @@ five_str=$(format_window "5h" "$five_pct" "$five_reset")
 [[ -n "$five_str" ]] && line2_parts+=("$five_str")
 seven_str=$(format_window "7d" "$seven_pct" "$seven_reset")
 [[ -n "$seven_str" ]] && line2_parts+=("$seven_str")
+
+transcript_path=$(echo "$input" | jq -r '.transcript_path // empty')
+context_tokens=
+if [[ -n "$transcript_path" && -f "$transcript_path" ]]; then
+    context_tokens=$(jq -r 'select(.message.usage != null) | .message.usage | (.input_tokens // 0) + (.cache_read_input_tokens // 0) + (.cache_creation_input_tokens // 0)' "$transcript_path" 2>/dev/null | tail -n 1)
+fi
+
+format_context() {
+    local tokens="$1"
+    [[ -z "$tokens" || "$tokens" == "0" ]] && return
+    local color
+    if (( tokens >= 160000 )); then
+        color=$'\033[31m'
+    elif (( tokens >= 80000 )); then
+        color=$'\033[33m'
+    else
+        color=$'\033[32m'
+    fi
+    printf 'context: %s%dk\033[0m' "$color" "$(( tokens / 1000 ))"
+}
+
+ctx_str=$(format_context "$context_tokens")
+[[ -n "$ctx_str" ]] && line2_parts+=("$ctx_str")
 
 # Output
 join_by ' · ' "${line1_parts[@]}"
