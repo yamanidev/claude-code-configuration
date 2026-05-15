@@ -4,7 +4,7 @@
 # a two-line status string:
 #
 #   Line 1: <model> <version>[ · <config-dir-name>]
-#   Line 2: 5h: <pct>% (<resets-in>) · 7d: <pct>% (<resets-in>) · context: <tokens>k
+#   Line 2: 5h: <pct>% (⟳ <resets-in>) · 7d: <pct>% (⟳ <resets-in>) · context: <tokens>k
 #
 # Line 1's config-dir name appears only when the active config dir
 # contains a `.config-name` file (written by install.sh for multi-account
@@ -91,7 +91,7 @@ format_window() {
         color=$'\033[32m'
     fi
     if [[ -n "$reset_in" ]]; then
-        printf '%s: %s%.0f%%\033[0m (resets in %s)' "$label" "$color" "$pct" "$reset_in"
+        printf '%s: %s%.0f%%\033[0m (⟳ %s)' "$label" "$color" "$pct" "$reset_in"
     else
         printf '%s: %s%.0f%%\033[0m' "$label" "$color" "$pct"
     fi
