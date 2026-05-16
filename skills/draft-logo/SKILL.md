@@ -41,11 +41,10 @@ SVG is the medium for exploration in this skill — the right format for showing
    - **Stylistic territory** — which mode it occupies ("soft-luminous"), so the slate as a whole spans different modes
    Before sending, self-check: *which of these would I forget by tomorrow? Replace those.* Wait for the user to confirm or trim the slate. Do not write any SVG yet.
 3. **Determine the round number.** Read `logos/` in the current working directory. If it doesn't exist, the round is 1. Otherwise pick the next available `logos/round-N.html`. Pick codes (`A` through `F`) restart each round.
-4. **Render the gallery.** Generate one SVG per confirmed concept, using the SVG technique committed in step 2. **Before embedding each SVG into the HTML, re-read the concept's name and one-line description and honestly ask: does this SVG render the thing I named?** If it doesn't — if "clouds" came out as rounded rectangles, if "the aperture" came out as a flat ring with no light-quality — redraw or rename. Then embed all SVGs in a single self-contained HTML file (inline CSS, no external dependencies) following the structure below. The gallery's nav block links to every round and (when present) the preview page; the brief recap appears below the title on every round, not only round 1. After writing round N's HTML, **regenerate the nav block in every prior round's HTML** — locate the `<!-- nav:start -->` / `<!-- nav:end -->` markers and replace the contents between them — so older rounds learn about the new one.
+4. **Render the gallery.** Generate one SVG per confirmed concept, using the SVG technique committed in step 2. **Before embedding each SVG into the HTML, re-read the concept's name and one-line description and honestly ask: does this SVG render the thing I named?** If it doesn't — if "clouds" came out as rounded rectangles, if "the aperture" came out as a flat ring with no light-quality — redraw or rename. Then embed all SVGs in a single self-contained HTML file (inline CSS, no external dependencies) following the structure below. The gallery's nav block links to every round; the brief recap appears below the title on every round, not only round 1. After writing round N's HTML, **regenerate the nav block in every prior round's HTML** — locate the `<!-- nav:start -->` / `<!-- nav:end -->` markers and replace the contents between them — so older rounds learn about the new one.
 5. **Print the path and stop.** Tell the user exactly where the file is and how to pick (by pick code — e.g., "I like `B` and `D`"). Do not draft round 2 unsolicited.
 6. **Converge on user picks.** When the user names picks (e.g., "`B` and `D`"), enter convergence mode: round N+1 produces ~6 cards total, distributed across the picked directions with a minimum of 2 variations per direction. Variations only — color shifts, weight changes, geometric refinements, technique substitutions (swap `feGaussianBlur` for crisper edges, swap a radial gradient for a flat fill). **Two carve-outs from "not new ideas":** (a) a *deferred* round-1 concept the user now wants to revisit is allowed — it's existing material, not novel; (b) if the user rejects an entire slate (round 1 or any convergence round), return to step 2 with a recalibrated brief, not card-level tweaks. Repeat until the user lands on one.
-7. **Preview the pick in context.** Before writing finals, render the chosen mark in realistic contexts in `logos/preview.html`: a fake browser tab with the favicon, the mark next to body copy at 20px, the mark on a dark dock-like background, a single-color stamp at small size. Same self-contained HTML format, same nav block — which now includes a `Preview` link; propagate that addition back into every round's nav block. This is the last sanity pass — it catches "looks great in the gallery, dies in context" failures. Wait for the user's confirmation before step 8.
-8. **Final export.** Once the user confirms the preview, write final assets to `logos/final/`:
+7. **Final export.** Once the user lands on a single concept, write final assets to `logos/final/`:
    - `logo-color.svg` — the chosen mark in color
    - `logo-mono.svg` — single-color version (for stamps, embossing, single-ink contexts)
    - `logo-inverted.svg` — light-on-dark variant if the dark background needs different geometry, not just a CSS color swap
@@ -108,7 +107,6 @@ Reach for whatever serves the concept. This is a menu, not a constraint — and 
     <a href="./round-2.html">Round 2</a>
     <span class="sep">·</span>
     <span class="current">Round 3</span>
-    <!-- once logos/preview.html exists, append: <span class="sep">·</span><a href="./preview.html">Preview</a> -->
   </nav>
   <!-- nav:end -->
 
@@ -138,7 +136,7 @@ Reach for whatever serves the concept. This is a menu, not a constraint — and 
 </html>
 ```
 
-Each concept appears in one `.card`. The *same* SVG is reused across all six swatches — sizing is CSS, not separate SVGs. If a concept needs visibly different geometry for light versus dark to read well, that's a signal the mark is fragile; surface it to the user rather than papering over with a second SVG. The `<!-- nav:start -->` / `<!-- nav:end -->` markers exist so the workflow can mechanically regenerate the navigation across every prior round when a new round (or the preview) is added — locate both markers in each existing file and replace the contents between them.
+Each concept appears in one `.card`. The *same* SVG is reused across all six swatches — sizing is CSS, not separate SVGs. If a concept needs visibly different geometry for light versus dark to read well, that's a signal the mark is fragile; surface it to the user rather than papering over with a second SVG. The `<!-- nav:start -->` / `<!-- nav:end -->` markers exist so the workflow can mechanically regenerate the navigation across every prior round when a new round is added — locate both markers in each existing file and replace the contents between them.
 
 ## What to provide
 
@@ -148,11 +146,10 @@ Each concept appears in one `.card`. The *same* SVG is reused across all six swa
 - A self-check on the slate before sending: drop any concept you'd forget by tomorrow
 - A self-check on each SVG before embedding: does it actually render the thing the card names?
 - A self-contained HTML gallery at `logos/round-N.html`, one card per concept, every SVG shown at large/medium/favicon on light + dark
-- A cross-round nav block at the top of every gallery (and the preview), regenerated in all prior files when a new round or the preview is added
+- A cross-round nav block at the top of every gallery, regenerated in all prior files when a new round is added
 - A brief recap below the title on every round's gallery, not only round 1
 - Convergence rounds that distribute ~6 cards across the picked directions (minimum 2 per pick), with deferred round-1 concepts permitted on user request, and a restart-from-slate path when the user rejects an entire slate
-- An in-the-wild preview at `logos/preview.html` before finals — favicon-in-browser-tab, mark next to body copy, mark on a dark dock-like surface, monochrome stamp
-- Final assets in `logos/final/` once the user confirms the preview, with a verified favicon variant
+- Final assets in `logos/final/` once the user lands on a single mark, with a verified favicon variant
 - Concepts that span different stylistic territories in round 1 — not six versions of the same style
 - Honest scope: a mark, not a brand identity system
 
@@ -174,7 +171,6 @@ Each concept appears in one `.card`. The *same* SVG is reused across all six swa
 - Introducing truly novel directions in a convergence round (a *deferred* round-1 concept the user revisits is fine; new ideas are not)
 - Tweaking cards when the user has rejected the whole slate — the fix is a new slate, not card-level refinement
 - Leaving prior rounds' nav blocks stale after writing a new round — regenerate them all in every existing file
-- Writing finals without producing the in-the-wild preview first
 - Shipping a "final" favicon without first verifying the mark actually reads at 16–24px
 
 ## Hard limits
