@@ -14,6 +14,7 @@ My personal [Claude Code](https://claude.com/claude-code) configuration.
 
 ## Skills
 
+- **[`/database`](skills/database/SKILL.md)** — database design, querying, indexing, transactions; relational by default, scope-tagged for non-relational
 - **[`/devops`](skills/devops/SKILL.md)** — DevOps and infrastructure mentorship
 - **[`/draft-logo`](skills/draft-logo/SKILL.md)** — drafting a logo mark for a project via an iterative HTML gallery of SVG concepts
 - **[`/handoff`](skills/handoff/SKILL.md)** — handing off a session's context to the next agent. Name inspired from [Matt Pockock](https://github.com/mattpocock/skills/)
