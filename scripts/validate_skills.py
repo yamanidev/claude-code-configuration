@@ -98,9 +98,7 @@ for skill_dir in dirs:
                 f'parent directory "{skill_dir.name}"',
             )
 
-    if not isinstance(description, str) or not description.strip():
-        flag(file, "description is missing or not a non-empty string")
-    else:
+    if isinstance(description, str) and description.strip():
         if len(description) > DESC_MAX:
             flag(
                 file,
@@ -113,6 +111,8 @@ for skill_dir in dirs:
                 "(`description: >-` on its own line, with content "
                 "indented on the next line)",
             )
+    else:
+        flag(file, "description is missing or not a non-empty string")
 
 if problems:
     for p in problems:
