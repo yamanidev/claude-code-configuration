@@ -35,6 +35,7 @@ NAME_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 NAME_MAX = 64
 DESC_MAX = 1024
 FRONTMATTER_RE = re.compile(r"\A---\n(.*?)\n---", re.S)
+DESC_FOLD_RE = re.compile(r"(?m)^description:[^\S\n]*>-[^\S\n]*$")
 
 problems: list[str] = []
 
@@ -99,11 +100,19 @@ for skill_dir in dirs:
 
     if not isinstance(description, str) or not description.strip():
         flag(file, "description is missing or not a non-empty string")
-    elif len(description) > DESC_MAX:
-        flag(
-            file,
-            f"description is {len(description)} chars; max is {DESC_MAX}",
-        )
+    else:
+        if len(description) > DESC_MAX:
+            flag(
+                file,
+                f"description is {len(description)} chars; max is {DESC_MAX}",
+            )
+        if not DESC_FOLD_RE.search(match.group(1)):
+            flag(
+                file,
+                "description must use folded block scalar syntax "
+                "(`description: >-` on its own line, with content "
+                "indented on the next line)",
+            )
 
 if problems:
     for p in problems:
