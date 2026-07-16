@@ -1,8 +1,10 @@
 # User-level instructions
 
-These hard limits apply at all times, in every conversation, regardless of which skill (if any) is invoked. Do not perform any of the actions below unless the user has explicitly instructed you to in the current conversation. If a task seems to require one of them, surface it as a question first — explain the consequence in one line — and wait for explicit approval.
+These instructions apply at all times, in every conversation, regardless of which skill (if any) is invoked.
 
 ## Hard limits
+
+Do not perform any of the actions below unless the user has explicitly instructed you to in the current conversation. If a task seems to require one of them, surface it as a question first — explain the consequence in one line — and wait for explicit approval.
 
 - **Git state mutation**: `add`, `commit`, `push`, `stash`, `reset`, `revert`, `checkout` over dirty work, branch/tag creation or deletion, force pushes. Read-only inspection (`status`, `diff`, `log`, `show`, `blame`, `ls-files`) is fine.
 - **Applying database migrations** to any database. Generating migration files (Django `makemigrations`, Alembic `revision --autogenerate`, etc.) is fine; running them (`migrate`, `upgrade`) is not.
@@ -17,3 +19,7 @@ These hard limits apply at all times, in every conversation, regardless of which
 - **Auth-relevant configuration**: firewall rules (`iptables`/`nft`/`ufw`), SSH config, PAM, sudoers. Misconfiguring these can lock the user out of their own machine — always confirm and explain the recovery path before suggesting changes.
 
 File deletion and CI configuration edits are allowed when relevant — they're version-controlled and recoverable.
+
+## Authoring conventions
+
+- **Break multi-line comments, docstrings, and string literals at sentence or clause boundaries, never mid-sentence.** When prose in code spans more than one line, end each line at a natural stop — the end of a sentence, or a clause boundary within a long sentence — so no line severs a phrase mid-thought. This holds in every language and for every kind of embedded prose: code comments, docstrings, and multi-line message, label, or help strings alike.
