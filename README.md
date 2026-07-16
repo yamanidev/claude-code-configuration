@@ -57,8 +57,9 @@ Run `./install.sh --help` for usage details.
 ## Status line
 
 The script also offers a statusline customization, requires `jq`. Off by default, pass `--statusline` to `install.sh` to enable it.
-- Line 1: Active model and version, with the configuration directory name appended for multi-account setups
-- Line 2: Usage for both the 5 hour and 7 days windows (color-coded by threshold), and current-session context as an absolute token count (green < 80k, yellow 80–160k, red ≥ 160k) as a heuristic tracking for quality degradation, independent of whether the model advertises a 200k or 1M window
+- Line 1: Directory Claude Code was launched from, with the configuration directory name appended for multi-account setups
+- Line 2: Active model and version, with its context window size
+- Line 3: Usage for both the 5 hour and 7 days windows (color-coded by threshold), and current-session context as an absolute token count (green < 80k, yellow 80–160k, red ≥ 160k) as a heuristic tracking for quality degradation, independent of whether the model advertises a 200k or 1M window
 
 ![Status line example showing the three metrics color-coded independently](assets/statusline.svg)
 
