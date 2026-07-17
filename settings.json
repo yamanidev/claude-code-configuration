@@ -3,5 +3,5 @@
     "defaultMode": "bypassPermissions"
   },
   "skipDangerousModePermissionPrompt": true,
-  "tui": "default",
+  "tui": "default"
 }
