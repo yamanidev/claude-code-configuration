@@ -15,7 +15,7 @@ without taking on skills-ref as a dependency.
 and is pre-release (no PyPI publish, no version tags, install from Git).
 - skills-ref's ALLOWED_FIELDS rejects any frontmatter key outside the
 six spec-defined ones, including Claude Code extension fields such as
-`disable-model-invocation`, which this repo plans to adopt.
+`disable-model-invocation`, which every skill in this repo sets.
 
 TODO: migrate to `skills-ref validate` once it ships a stable, tagged
 release and either expands its allow-list to include client extension

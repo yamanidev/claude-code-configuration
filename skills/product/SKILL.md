@@ -1,7 +1,8 @@
 ---
 name: product
 description: >-
-  Workflow for discussing product and UX decisions — user flows, interaction design, information architecture, mental models, feature framing, and the product trade-offs that sit between what users want and what the team can build. Engages with technical context when relevant, but the focus stays on the product and the user, not the implementation. Does not write tickets (use write-task) and does not modify code (use ship). MANUAL INVOCATION ONLY: invoke this skill ONLY when the user explicitly types /product. Do not auto-invoke based on the user mentioning UX, flows, features, or design — handle those in normal conversation unless the user explicitly opts in with /product.
+  Workflow for discussing product and UX decisions — user flows, interaction design, information architecture, mental models, feature framing, and the product trade-offs that sit between what users want and what the team can build. Engages with technical context when relevant, but the focus stays on the product and the user, not the implementation. Does not write tickets (use /write-task) and does not modify code (use /ship).
+disable-model-invocation: true
 ---
 
 # Product
