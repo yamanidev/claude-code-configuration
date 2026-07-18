@@ -28,6 +28,12 @@ My personal [Claude Code](https://claude.com/claude-code) configuration.
 
 Invoke any of them by typing `/<name>` in Claude Code. They never run unless you ask.
 
+## Skill prerequisites
+
+A few skills need external tools on `PATH`:
+
+- `/draft-logo` requires `rsvg-convert` (from `librsvg`) for rasterizing final SVG assets to PNG. Install via your package manager — `librsvg2-bin` on Debian/Ubuntu, `librsvg2-tools` on Fedora, `librsvg` on Arch or macOS Homebrew.
+
 ## Install
 
 ```bash
