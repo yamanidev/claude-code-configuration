@@ -6,6 +6,7 @@
 
 """
 Validates every skills/<name>/SKILL.md against the Agent Skills spec.
+It also enforces one repo-local policy beyond the spec: every skill must set `disable-model-invocation: true`, because this configuration is manual-invocation only.
 
 Mirrors the validation rules and the YAML library used by the official
 `skills-ref` reference library (https://github.com/agentskills/agentskills)
@@ -15,7 +16,7 @@ without taking on skills-ref as a dependency.
 and is pre-release (no PyPI publish, no version tags, install from Git).
 - skills-ref's ALLOWED_FIELDS rejects any frontmatter key outside the
 six spec-defined ones, including Claude Code extension fields such as
-`disable-model-invocation`, which every skill in this repo sets.
+`disable-model-invocation`, which every skill in this repo sets and this script now enforces.
 
 TODO: migrate to `skills-ref validate` once it ships a stable, tagged
 release and either expands its allow-list to include client extension
@@ -113,6 +114,14 @@ for skill_dir in dirs:
             )
     else:
         flag(file, "description is missing or not a non-empty string")
+
+    # Repo policy, not an Agent Skills spec rule: this configuration is manual-invocation only, so every skill must opt out of model auto-loading.
+    if fm.get("disable-model-invocation") != "true":
+        flag(
+            file,
+            "disable-model-invocation is missing or not `true` "
+            "(every skill in this repo is manual-invocation only)",
+        )
 
 if problems:
     for p in problems:
