@@ -2,5 +2,10 @@
   "permissions": {
     "defaultMode": "bypassPermissions"
   },
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "tui": "default",
+  "disableBundledSkills": true,
+  "disableWorkflows": true,
+  "disableArtifact": true,
+  "disableClaudeAiConnectors": true
 }

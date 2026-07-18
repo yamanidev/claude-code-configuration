@@ -1,7 +1,8 @@
 ---
 name: draft-logo
 description: >-
-  Workflow for drafting a logo mark for a side project or utility, producing a self-contained HTML gallery of 4–6 concept directions per round — each rendered in SVG at large, medium, and favicon sizes on both light and dark backgrounds. The user opens the gallery in a browser, picks favorites by short letter code, and converges through subsequent rounds of variations. Forces a written brief before any SVG is drawn and requires each concept to commit to its SVG technique up front. NOT for full brand identity work (palette systems, type pairings, voice guides, marketing copy) and NOT for editing application code to install the logo into a UI (use /ship for that). MANUAL INVOCATION ONLY: invoke this skill ONLY when the user explicitly types /draft-logo. Do not auto-invoke when the user mentions logos, branding, icons, SVG, or design — handle those in normal conversation unless they explicitly opt in with /draft-logo.
+  Workflow for drafting a logo mark for a side project or utility, producing a self-contained HTML gallery of 4–6 concept directions per round — each rendered in SVG at large, medium, and favicon sizes on both light and dark backgrounds. The user opens the gallery in a browser, picks favorites by short letter code, and converges through subsequent rounds of variations. Forces a written brief before any SVG is drawn and requires each concept to commit to its SVG technique up front. NOT for full brand identity work (palette systems, type pairings, voice guides, marketing copy) and NOT for editing application code to install the logo into a UI (use /ship for that).
+disable-model-invocation: true
 ---
 
 # Draft Logo

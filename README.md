@@ -16,6 +16,7 @@ My personal [Claude Code](https://claude.com/claude-code) configuration.
 
 - **[`/database`](skills/database/SKILL.md)** — database design, querying, indexing, transactions; relational by default, scope-tagged for non-relational
 - **[`/devops`](skills/devops/SKILL.md)** — DevOps and infrastructure mentorship
+- **[`/dig`](skills/dig/SKILL.md)** — read-only investigation: understanding how code works, confirming behavior, diagnosing bugs
 - **[`/draft-logo`](skills/draft-logo/SKILL.md)** — drafting a logo mark for a project via an iterative HTML gallery of SVG concepts
 - **[`/handoff`](skills/handoff/SKILL.md)** — handing off a session's context to the next agent. Name inspired from [Matt Pockock](https://github.com/mattpocock/skills/)
 - **[`/linux`](skills/linux/SKILL.md)** — Linux internals and operations
@@ -63,8 +64,9 @@ Run `./install.sh --help` for usage details.
 ## Status line
 
 The script also offers a statusline customization, requires `jq`. Off by default, pass `--statusline` to `install.sh` to enable it.
-- Line 1: Active model and version, with the configuration directory name appended for multi-account setups
-- Line 2: Usage for both the 5 hour and 7 days windows (color-coded by threshold), and current-session context as an absolute token count (green < 80k, yellow 80–160k, red ≥ 160k) as a heuristic tracking for quality degradation, independent of whether the model advertises a 200k or 1M window
+- Line 1: Directory Claude Code was launched from, with the configuration directory name appended for multi-account setups
+- Line 2: Active model and version, with its context window size
+- Line 3: Usage for both the 5 hour and 7 days windows (color-coded by threshold), and current-session context as an absolute token count (green < 80k, yellow 80–160k, red ≥ 160k) as a heuristic tracking for quality degradation, independent of whether the model advertises a 200k or 1M window
 
 ![Status line example showing the three metrics color-coded independently](assets/statusline.svg)
 

@@ -1,7 +1,8 @@
 ---
 name: handoff
 description: >-
-  Workflow for compacting the current conversation into a handoff document that another Claude Code session can pick up from later. Produces a single Markdown file capturing the goal, current state, in-flight work, decisions made, open questions, paths touched, and a recommended next-session skill — referencing existing artifacts (commits, PRs, diffs, plan docs, tickets, ADRs) by path or URL rather than duplicating them. NOT for writing tickets for a human development team (use /write-task for that) and NOT for permanent documentation of decisions (commits, ADRs, or the codebase own that). MANUAL INVOCATION ONLY: invoke this skill ONLY when the user explicitly types /handoff. Do not auto-invoke when the user mentions handoffs, context, summaries, or "let's pick this up tomorrow" — handle those in normal conversation unless the user explicitly opts in with /handoff.
+  Workflow for compacting the current conversation into a handoff document that another Claude Code session can pick up from later. Produces a single Markdown file capturing the goal, current state, in-flight work, decisions made, open questions, paths touched, and a recommended next-session skill — referencing existing artifacts (commits, PRs, diffs, plan docs, tickets, ADRs) by path or URL rather than duplicating them. NOT for writing tickets for a human development team (use /write-task for that) and NOT for permanent documentation of decisions (commits, ADRs, or the codebase own that).
+disable-model-invocation: true
 ---
 
 # Handoff
