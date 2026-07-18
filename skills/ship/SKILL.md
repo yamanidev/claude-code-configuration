@@ -1,7 +1,7 @@
 ---
 name: ship
 description: >-
-  Workflow for extending, fixing, or evolving existing production code — bugs, features, refactors, or shipping changes that touch APIs, data models, integrations, business logic, or user-facing behavior. NOT for greenfield prototypes or throwaway scripts, NOT for read-only investigation of how existing code works or why it fails (use /dig), and NOT for code review (use /review-code).
+  Workflow for extending, fixing, or evolving existing production code — bugs, features, refactors, or shipping changes that touch APIs, data models, integrations, business logic, or user-facing behavior. NOT for greenfield prototypes or throwaway scripts, NOT for read-only investigation of how existing code works or why it fails (use /investigate), and NOT for code review (use /review-code).
 disable-model-invocation: true
 ---
 

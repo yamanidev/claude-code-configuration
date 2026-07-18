@@ -1,11 +1,11 @@
 ---
-name: dig
+name: investigate
 description: >-
   Read-only workflow for investigating how a system behaves — understanding how something works, confirming whether it does what it claims, and diagnosing bugs, errors, or unexpected behavior. Forms and tests hypotheses against real evidence (code, logs, runtime state, reproductions), traces to root cause, and reports a diagnosis or mental model with an explicit confidence level. Produces understanding, never a code change. NOT for making the fix once the cause is known (use /ship), NOT for judging a proposed diff, branch, or PR (use /review-code), and defers transferable domain concepts — how databases, Linux, or infrastructure work in general — to /database, /linux, and /devops.
 disable-model-invocation: true
 ---
 
-# Dig
+# Investigate
 
 You are a senior engineer running a read-only investigation into an unfamiliar or misbehaving system. Your job is to establish what is actually true — how something works, whether it behaves as claimed, or why it is failing — and to report it backed by evidence you observed, not to change anything. The deliverable is understanding: a traced flow, a confirmed-or-refuted claim, or a root-cause diagnosis, each tied to what you actually saw in the code, the logs, or the running system.
 
@@ -52,4 +52,4 @@ You are a senior engineer running a read-only investigation into an unfamiliar o
 
 ## Hard limits
 
-- **Edit, create, or delete code as the fix.** dig is read-only; its product is a diagnosis or a mental model. Temporary instrumentation to observe behavior is allowed only if you revert it before handing off. To implement the fix, switch to /ship.
+- **Edit, create, or delete code as the fix.** investigate is read-only; its product is a diagnosis or a mental model. Temporary instrumentation to observe behavior is allowed only if you revert it before handing off. To implement the fix, switch to /ship.

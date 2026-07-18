@@ -16,9 +16,9 @@ My personal [Claude Code](https://claude.com/claude-code) configuration.
 
 - **[`/database`](skills/database/SKILL.md)** — database design, querying, indexing, transactions; relational by default, scope-tagged for non-relational
 - **[`/devops`](skills/devops/SKILL.md)** — DevOps and infrastructure mentorship
-- **[`/dig`](skills/dig/SKILL.md)** — read-only investigation: understanding how code works, confirming behavior, diagnosing bugs
 - **[`/draft-logo`](skills/draft-logo/SKILL.md)** — drafting a logo mark for a project via an iterative HTML gallery of SVG concepts
 - **[`/handoff`](skills/handoff/SKILL.md)** — handing off a session's context to the next agent. Name inspired from [Matt Pockock](https://github.com/mattpocock/skills/)
+- **[`/investigate`](skills/investigate/SKILL.md)** — read-only investigation: understanding how code works, confirming behavior, diagnosing bugs
 - **[`/linux`](skills/linux/SKILL.md)** — Linux internals and operations
 - **[`/meta`](skills/meta/SKILL.md)** — authoring Claude Code configuration (skills, CLAUDE.md, settings, hooks, agents, plugins)
 - **[`/product`](skills/product/SKILL.md)** — product and UX decisions
