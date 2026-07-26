@@ -80,7 +80,7 @@ fi
 # Line 2 — model + version + context-window size
 model_name=$(echo "$input" | jq -r '.model.display_name // empty')
 model_id=$(echo "$input" | jq -r '.model.id // empty')
-version=$(echo "$model_id" | grep -oE '[0-9]+-[0-9]+' | head -n1 | tr '-' '.')
+version=$(echo "$model_id" | grep -oE '[0-9]+-[0-9]+' | head -n1 | tr '-' '.' || true)
 context_window_size=$(echo "$input" | jq -r '.context_window.context_window_size // empty')
 
 # Renders the context window as a label, e.g. "1M context" or "200k context".
@@ -149,7 +149,7 @@ seven_str=$(format_window "7d" "$seven_pct" "$seven_reset")
 transcript_path=$(echo "$input" | jq -r '.transcript_path // empty')
 context_tokens=
 if [[ -n "$transcript_path" && -f "$transcript_path" ]]; then
-    context_tokens=$(jq -r 'select(.message.usage != null) | .message.usage | (.input_tokens // 0) + (.cache_read_input_tokens // 0) + (.cache_creation_input_tokens // 0)' "$transcript_path" 2>/dev/null | tail -n 1)
+    context_tokens=$(jq -r 'select(.message.usage != null) | .message.usage | (.input_tokens // 0) + (.cache_read_input_tokens // 0) + (.cache_creation_input_tokens // 0)' "$transcript_path" 2>/dev/null | tail -n 1 || true)
 fi
 
 format_context() {
