@@ -15,10 +15,12 @@ into one or more Claude Code config directories. Idempotent — safe to
 re-run after pulling updates.
 
 Flags:
-  --statusline    Opt in to the status line (installs settings with a
-                  statusLine block and symlinks statusline.sh). With
-                  multiple target dirs, prompts for a display name per
-                  dir.
+  --statusline    Opt in to the status line. Generates
+                  settings-with-statusline.json from settings.json and
+                  statusline.json, links it as settings.json, and links
+                  statusline.sh. Re-run after `git pull` to refresh the
+                  generated file. With multiple target dirs, prompts for
+                  a display name per dir.
   -h, --help      Show this message and exit.
 
 Examples:
@@ -50,6 +52,10 @@ ITEMS=(
     "CLAUDE.md:CLAUDE.md"
 )
 if [[ "$STATUSLINE" == "true" ]]; then
+    # The status-line settings file is generated and git-ignored.
+    # Build it first so a fresh clone has something to link.
+    # A re-run after `git pull` refreshes it the same way.
+    "$REPO_ROOT/scripts/build_settings.sh"
     ITEMS+=("settings-with-statusline.json:settings.json")
     ITEMS+=("scripts/statusline.sh:statusline.sh")
 else
