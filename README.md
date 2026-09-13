@@ -57,7 +57,7 @@ With no arguments, it targets the default `~/.claude`. Pass one or more paths to
 
 That's the form to use if you run multiple Claude Code accounts side-by-side via `CLAUDE_CONFIG_DIR`, the setup I describe in [How to Use Multiple Claude Code Accounts (Work & Personal)](https://mohamedyamani.com/blog/multiple-claude-code-accounts-work-personal/).
 
-To stay up-to-date with this configuration, just run `git pull`, updates propagate through the symlinks automatically.
+To stay up-to-date with this configuration, just run `git pull`, updates propagate through the symlinks automatically. The status line variant is the one exception, see below.
 
 Run `./install.sh --help` for usage details.
 
@@ -69,6 +69,8 @@ The script also offers a statusline customization, requires `jq`. Off by default
 - Line 3: Usage for both the 5 hour and 7 days windows (color-coded by threshold), and current-session context as an absolute token count (green < 80k, yellow 80–160k, red ≥ 160k) as a heuristic tracking for quality degradation, independent of whether the model advertises a 200k or 1M window
 
 ![Status line example showing the three metrics color-coded independently](assets/statusline.svg)
+
+With `--statusline`, `install.sh` first generates `settings-with-statusline.json` from `settings.json` plus [`statusline.json`](statusline.json), which holds only the `statusLine` block. It then links that generated file, not `settings.json`, into the config dir: `settings-with-statusline.json` → `<config>/settings.json`. The generated file is git-ignored, so after a `git pull` that touches either source, re-run `./install.sh --statusline` or `scripts/build_settings.sh` to refresh it. Edit the two sources, never the generated file.
 
 ## License
 
