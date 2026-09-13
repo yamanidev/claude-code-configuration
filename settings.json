@@ -7,5 +7,10 @@
   "disableBundledSkills": true,
   "disableWorkflows": true,
   "disableArtifact": true,
-  "disableClaudeAiConnectors": true
+  "disableClaudeAiConnectors": true,
+  "attribution": {
+    "commit": "",
+    "pr": "",
+    "sessionUrl": false
+  }
 }

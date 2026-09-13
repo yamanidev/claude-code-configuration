@@ -6,7 +6,8 @@ on:
       - 'skills/**/SKILL.md'
       - 'scripts/validate_skills.py'
       - 'settings.json'
-      - 'settings-with-statusline.json'
+      - 'statusline.json'
+      - 'scripts/build_settings.sh'
       - 'scripts/validate_settings.sh'
       - '.github/workflows/validate.yaml'
 
@@ -26,5 +27,5 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Check the two settings files stay in sync
+      - name: Check settings.json and statusline.json build cleanly
         run: bash scripts/validate_settings.sh

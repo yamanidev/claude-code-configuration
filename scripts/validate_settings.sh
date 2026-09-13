@@ -1,38 +1,22 @@
 #!/usr/bin/env bash
 #
-# validate_settings.sh — assert the two settings files stay in sync.
+# validate_settings.sh — assert settings.json and statusline.json build cleanly.
 #
-# install.sh symlinks one of two static settings files into a config dir: settings.json, or settings-with-statusline.json when --statusline is passed.
-# The two must carry identical configuration, differing only by the statusLine block the second file adds.
-# This check enforces that invariant so a key added or changed in one file is never silently missed in the other.
+# settings-with-statusline.json is generated from those two by build_settings.sh and is git-ignored.
+# So there is no committed artifact to compare against.
+# The check is that a build into a throwaway path succeeds.
+# build_settings.sh already rejects invalid JSON, a fragment with keys other than statusLine, and a statusLine key in settings.json.
 
 set -euo pipefail
 
-base="settings.json"
-statusline="settings-with-statusline.json"
+repo_root="$(cd "$(dirname "$0")/.." && pwd)"
 
-for file in "$base" "$statusline"; do
-    if ! jq empty "$file" >/dev/null 2>&1; then
-        echo "❌ $file is not valid JSON" >&2
-        exit 1
-    fi
-done
+scratch_dir="$(mktemp -d)"
+trap 'rm -rf "$scratch_dir"' EXIT
 
-if diff_output=$(diff \
-    <(jq -S 'del(.statusLine)' "$statusline") \
-    <(jq -S . "$base")); then
-    echo "✅ $base and $statusline are in sync (modulo statusLine)."
+if "$repo_root/scripts/build_settings.sh" "$scratch_dir/settings-with-statusline.json" >/dev/null; then
+    echo "✅ settings.json and statusline.json build cleanly."
 else
-    echo "❌ $base and $statusline have drifted." >&2
-    echo "" >&2
-    echo "$diff_output" >&2
-    echo "" >&2
-    echo "🛑 The two files must share every key except statusLine." >&2
-    echo "   Apply the change to both, then re-run this check." >&2
-    exit 1
-fi
-
-if [[ "$(jq -r 'has("statusLine")' "$statusline")" != "true" ]]; then
-    echo "❌ $statusline is missing its statusLine block." >&2
+    echo "🛑 Fix the source files above, then re-run this check." >&2
     exit 1
 fi
