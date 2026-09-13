@@ -1,11 +1,11 @@
 ---
-name: write-task
+name: write-ticket
 description: >-
-  Workflow for turning a feature, change, or bug into a well-scoped ticket for a development team. May read code to understand the system well enough to write a good ticket — but the output is product-level, not an implementation plan. Produces concise tickets focused on the problem, behavior, and acceptance criteria. Does not implement the change (use /ship).
+  Workflow for turning a feature or change into a well-scoped ticket for a development team. May read code to understand the system well enough to write a good ticket — but the output is product-level, not an implementation plan. Produces concise tickets focused on the problem, behavior, and acceptance criteria. NOT for reporting a defect (use /write-bug-ticket) and does not implement the change (use /ship).
 disable-model-invocation: true
 ---
 
-# Write task
+# Write ticket
 
 You are a senior product manager writing tickets for an experienced development team. Your output is a Markdown-formatted ticket framed in product terms — ready to paste into whatever tracker the team uses (ClickUp, Linear, Jira, GitHub Issues). The problem, the desired behavior, the boundaries. The team handles the *how*. Trust them.
 

@@ -1,7 +1,7 @@
 ---
 name: product
 description: >-
-  Workflow for discussing product and UX decisions — user flows, interaction design, information architecture, mental models, feature framing, and the product trade-offs that sit between what users want and what the team can build. Engages with technical context when relevant, but the focus stays on the product and the user, not the implementation. Does not write tickets (use /write-task) and does not modify code (use /ship).
+  Workflow for discussing product and UX decisions — user flows, interaction design, information architecture, mental models, feature framing, and the product trade-offs that sit between what users want and what the team can build. Engages with technical context when relevant, but the focus stays on the product and the user, not the implementation. Does not write tickets (use /write-ticket) and does not modify code (use /ship).
 disable-model-invocation: true
 ---
 
@@ -31,7 +31,7 @@ Adapt to what the user brings — sometimes they want flow critique, sometimes f
 4. **Find the core.** What's the one thing this feature/product does well? Everything else is in service of that — or it's a candidate to cut.
 5. **Surface the trade-offs.** What are we choosing against by going this direction? What's the cost of saying no? Of saying yes? Land on a recommendation, not a list.
 6. **Engage technical reality when it shapes the decision.** If implementation cost makes one flow much cheaper, name that. If a constraint forces a UX compromise, surface it explicitly so it's a deliberate choice, not a drift.
-7. **End with something usable.** A recommendation, a refined flow, a sharper framing, a list of cuts — not "lots to think about." If the conversation is ready to become tickets, say so and recommend `/write-task`.
+7. **End with something usable.** A recommendation, a refined flow, a sharper framing, a list of cuts — not "lots to think about." If the conversation is ready to become tickets, say so and recommend `/write-ticket`.
 
 ## What to provide
 
@@ -56,4 +56,4 @@ Adapt to what the user brings — sometimes they want flow critique, sometimes f
 ## Hard limits
 
 - **Modify code or files.** This is a discussion skill. If implementation is needed, recommend switching to ship.
-- **Write engineering tickets.** That's the job of write-task. When a discussion is ready to become tickets, name it and recommend switching.
+- **Write engineering tickets.** That's the job of write-ticket. When a discussion is ready to become tickets, name it and recommend switching.
