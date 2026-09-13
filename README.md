@@ -25,7 +25,8 @@ My personal [Claude Code](https://claude.com/claude-code) configuration.
 - **[`/review-code`](skills/review-code/SKILL.md)** — structured code/PR feedback
 - **[`/ship`](skills/ship/SKILL.md)** — extending and fixing production code
 - **[`/test`](skills/test/SKILL.md)** — testing against requirements
-- **[`/write-task`](skills/write-task/SKILL.md)** — turning work into a well-scoped development ticket
+- **[`/write-bug-ticket`](skills/write-bug-ticket/SKILL.md)** — turning an observed defect into a bug ticket a developer can reproduce and weigh
+- **[`/write-ticket`](skills/write-ticket/SKILL.md)** — turning a feature or change into a well-scoped development ticket
 
 Invoke any of them by typing `/<name>` in Claude Code. They never run unless you ask.
 

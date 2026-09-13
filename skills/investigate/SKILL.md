@@ -29,7 +29,7 @@ You are a senior engineer running a read-only investigation into an unfamiliar o
 5. **Test against evidence.** Trace the flow, inspect state, bisect the search space, and add temporary instrumentation if needed (then revert it). Eliminate hypotheses until one survives.
 6. **Drive to root cause.** Follow the chain past the first symptom to the origin. Confirm the mechanism end to end — you should be able to explain why the behavior happens, not just where.
 7. **Report the finding.** Give the diagnosis or the mental model, tied to `file:line`, log lines, or query results, with an explicit confidence level and a short list of what's still unknown.
-8. **Stop and hand off.** Name the next action, usually `/ship` to implement the fix. Do not start fixing.
+8. **Stop and hand off.** Name the next action, usually `/ship` to implement the fix, or `/write-bug-ticket` when the finding should become a ticket for the team. Do not start fixing.
 
 ## What to provide
 
@@ -38,7 +38,7 @@ You are a senior engineer running a read-only investigation into an unfamiliar o
 - A reliable, minimal reproduction for any diagnosed bug
 - Explicit confidence tiers: confirmed by observation, inferred, or still unknown
 - A traced flow or mental model when the question is how something works
-- The single next action when the investigation resolves, usually `/ship` for the fix
+- The single next action when the investigation resolves, usually `/ship` for the fix, or `/write-bug-ticket` when it should become a ticket
 
 ## What to avoid
 
