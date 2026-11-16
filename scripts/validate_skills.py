@@ -7,6 +7,7 @@
 """
 Validates every skills/<name>/SKILL.md against the Agent Skills spec.
 It also enforces one repo-local policy beyond the spec: every skill must set `disable-model-invocation: true`, because this configuration is manual-invocation only.
+Directories git ignores are skipped, because Claude Code writes its own synced skills into skills/ through the install symlinks.
 
 Mirrors the validation rules and the YAML library used by the official
 `skills-ref` reference library (https://github.com/agentskills/agentskills)
@@ -25,6 +26,7 @@ https://github.com/agentskills/agentskills/releases
 """
 
 import re
+import subprocess
 import sys
 import unicodedata
 from pathlib import Path
@@ -45,7 +47,27 @@ def flag(file: Path, msg: str) -> None:
     problems.append(f"{file}: {msg}")
 
 
-dirs = sorted(p for p in SKILLS_DIR.iterdir() if p.is_dir())
+def ignored_by_git(paths: list[Path]) -> set[Path]:
+    """Returns the subset of paths that .gitignore rules exclude."""
+    if not paths:
+        return set()
+
+    result = subprocess.run(
+        ["git", "check-ignore", "--stdin"],
+        input="\n".join(f"{path}/" for path in paths),
+        capture_output=True,
+        text=True,
+    )
+    # Exit code 1 means no path is ignored. Anything above it is a git failure.
+    if result.returncode > 1:
+        sys.exit(f"git check-ignore failed: {result.stderr.strip()}")
+
+    return {Path(line.rstrip("/")) for line in result.stdout.splitlines()}
+
+
+candidate_dirs = [p for p in SKILLS_DIR.iterdir() if p.is_dir()]
+ignored_dirs = ignored_by_git(candidate_dirs)
+dirs = sorted(p for p in candidate_dirs if p not in ignored_dirs)
 
 for skill_dir in dirs:
     file = skill_dir / "SKILL.md"
